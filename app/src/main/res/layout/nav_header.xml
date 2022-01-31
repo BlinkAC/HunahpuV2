@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="5dp"
+    android:paddingTop="5dp"
+    android:background="@color/teal_200">
+    <ImageView
+        android:id="@+id/profilePic"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="60dp"
+        android:layout_height="60dp">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/userName"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Raul Salinas"
+        android:textColor="@color/white">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/userEmail"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gato@gmail.com"
+        android:textColor="@color/white">
+
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/black"
+        ></View>
+</LinearLayout>

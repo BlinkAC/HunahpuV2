@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">HunahpuV2</string>
+    <string name="facebook_app_id">354956453127340</string>
+    <string name="fb_login_protocol_scheme">fb354956453127340</string>
+    <string name="googleSignIn">Iniciar sesión con Google</string>
+    <string name="facebookSignIn">Iniciar sesión con Facebook</string>
+    <string name="home">Home</string>
+    <string name="favs">Productos favoritos</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="favSuccess">Producto añadido a favoritos exitosamente</string>
+    <string name="deleteAll">Eliminar todos</string>
+    <string name="singleDelteted">¡Producto eliminado exitosamente!</string>
+    <string name="allDeleted">¡Productos eliminados exitosamente!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

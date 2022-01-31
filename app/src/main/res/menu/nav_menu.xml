@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/home"
+        >
+    </item>
+
+    <item
+        android:id="@+id/nav_favs"
+        android:title="@string/favs"
+        >
+
+    </item>
+
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="@string/logout"></item>
+
+    <item android:title="Usuario">
+        <menu>
+
+            <item
+                android:id="@+id/userLogout"
+                android:title="Cerrar sesión">
+
+            </item>
+
+            <item android:id="@+id/prueba1"
+                android:title="Prueba 1">
+
+            </item>
+
+            <item android:id="@+id/prueba2"
+                android:title="Prueba 2">
+
+            </item>
+
+        </menu>
+    </item>
+</menu>
