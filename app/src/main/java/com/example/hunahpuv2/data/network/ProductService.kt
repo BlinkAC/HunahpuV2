@@ -19,4 +19,14 @@ class ProductService {
         }
     }
 
+    suspend fun getProductById(productId: Long): ProductModel{
+        return withContext(Dispatchers.IO){
+            val response = retrofit.create(ApiClient::class.java).getProductsById(productId)
+            if (response.isSuccessful){
+                Log.d("Mensaje", "All cool")
+            }
+            response.body()!!
+        }
+    }
+
 }

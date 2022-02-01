@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hunahpuv2.R
-
 import com.example.hunahpuv2.databinding.FragmentFavoriteProdsBinding
 import com.example.hunahpuv2.iu.viewModel.ProductDbViewModel
 import com.example.hunahpuv2.utils.FavoriteProductsAdapter

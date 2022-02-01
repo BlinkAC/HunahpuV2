@@ -1,9 +1,11 @@
 package com.example.hunahpuv2.iu.viewModel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hunahpuv2.data.model.ProductModel
+import com.example.hunahpuv2.domain.GetProductUseCase
 import com.example.hunahpuv2.domain.GetProductsUseCase
 import kotlinx.coroutines.launch
 
@@ -14,6 +16,7 @@ class productViewModel: ViewModel() {
 
     var getProductsUseCase = GetProductsUseCase()
 
+
     fun getProducts(){
         viewModelScope.launch {
             isLoading.postValue(true)
@@ -22,4 +25,6 @@ class productViewModel: ViewModel() {
             isLoading.postValue(false)
         }
     }
+
+
 }

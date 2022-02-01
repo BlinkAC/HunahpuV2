@@ -14,4 +14,11 @@ class ProductRepo {
         ProductProvider.products = respose
         return respose
     }
+
+    suspend fun getProductById(productId: Long): ProductModel{
+        val response = api.getProductById(productId)
+
+        ProductProvider.product = response
+        return response
+    }
 }

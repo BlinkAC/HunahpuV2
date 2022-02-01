@@ -55,9 +55,9 @@ class MainRecyclerViewAdapter(private val list: List<AllCategories>):
     override fun OnItemClick(product: ProductModel, context: Context) {
         val intent = Intent(context, ProductDetails::class.java)
         intent.putExtra("productId", product.id.toString())
-        intent.putExtra("productName", product.productName)
-        intent.putExtra("productImage", product.productImage)
-        intent.putExtra("productQuantity", product.quantity)
+        //intent.putExtra("productName", product.productName)
+        //intent.putExtra("productImage", product.productImage)
+        //intent.putExtra("productQuantity", product.quantity)
 
         context.startActivity(intent)
     }

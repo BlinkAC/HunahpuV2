@@ -1,11 +1,12 @@
 package com.example.hunahpuv2.iu.views
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,12 +20,17 @@ import com.example.hunahpuv2.iu.viewModel.productViewModel
 import com.example.hunahpuv2.utils.mainAdapter.MainRecyclerViewAdapter
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanIntentResult
+import com.journeyapps.barcodescanner.ScanOptions
+
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
+
     private val productViewModel: productViewModel by viewModels()
     private var mainRecyclerView: RecyclerView? = null
     private var allCategory: MutableList<AllCategories> = ArrayList()
@@ -73,11 +79,36 @@ class HomeActivity : AppCompatActivity() {
             visibility ->
             binding.loading.isVisible = visibility
         }
-        /*binding.logoutBtn.setOnClickListener {
-            firebaseAuth.signOut()
-            checkUser()
-        }*/
+
+
+        binding.scannerButton.setOnClickListener {
+            initScanner()
+        }
     }
+
+    private fun initScanner() {
+        val options = ScanOptions()
+        options.setDesiredBarcodeFormats("EAN-13", "EAN-8")
+        options.setPrompt("Scanee el codigo de barras")
+        options.setTorchEnabled(true)
+        options.setBeepEnabled(true)
+        barcodeLauncher.launch(options)
+    }
+
+    private val barcodeLauncher = registerForActivityResult(
+        ScanContract()
+    ) { result: ScanIntentResult ->
+        if (result.contents == null) {
+            Toast.makeText(this, "Lectura cancelada", Toast.LENGTH_LONG).show()
+        } else {
+            val intent = Intent(this, ProductDetails::class.java)
+            intent.putExtra("productId", result.contents)
+            startActivity(intent)
+        }
+    }
+
+
+
 
     private fun setMainRV(allCategory: List<AllCategories>) {
         mainRecyclerView = binding.parentRecyclerView
