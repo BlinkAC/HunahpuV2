@@ -5,5 +5,7 @@ class ProductProvider {
         var products: List<ProductModel>? = null
 
         var product: ProductModel? = null
+
+        var prices: PriceModel? = null
     }
 }

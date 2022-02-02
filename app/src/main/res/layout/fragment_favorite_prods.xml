@@ -21,7 +21,7 @@
 
     <Button
         android:id="@+id/deleteAllButton"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#FF3F31"

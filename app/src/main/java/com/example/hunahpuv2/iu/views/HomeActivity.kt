@@ -124,8 +124,6 @@ class HomeActivity : AppCompatActivity() {
         if(firebaseUser == null){
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }else{
-
         }
     }
 

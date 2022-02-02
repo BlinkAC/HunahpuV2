@@ -6,8 +6,8 @@ import com.example.hunahpuv2.data.database.entities.ProductEntity
 
 @Dao
 interface ProductDao {
-    @Query("SELECT * FROM product_table")
-    fun getAllProducts(): LiveData<List<ProductEntity>>
+    @Query("SELECT * FROM product_table WHERE userId = :userId")
+    fun getAllProducts(userId: String): LiveData<List<ProductEntity>>
 
     @Query("DELETE FROM product_table")
     suspend fun deleteAllProducts()

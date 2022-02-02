@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.hunahpuv2.data.database.dao.ProductDao
 import com.example.hunahpuv2.data.database.entities.ProductEntity
 
-@Database(entities = [ProductEntity::class], version = 1, exportSchema = false )
+@Database(entities = [ProductEntity::class], version = 2, exportSchema = false )
 abstract class ProductDatabase: RoomDatabase() {
 
     abstract fun productDao(): ProductDao

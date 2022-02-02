@@ -1,5 +1,6 @@
 package com.example.hunahpuv2.utils
 
+import android.app.Application
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,23 +14,34 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hunahpuv2.R
 import com.example.hunahpuv2.data.database.entities.ProductEntity
 import com.example.hunahpuv2.databinding.RowFavoriteItemBinding
-import com.example.hunahpuv2.iu.viewModel.ProductDbViewModel
+import com.example.hunahpuv2.iu.viewModel.LocalProductFactory
+import com.example.hunahpuv2.iu.viewModel.LocalProductsViewModel
+
 import com.squareup.picasso.Picasso
 
 
-class FavoriteProductsAdapter (val context: ViewModelStoreOwner): RecyclerView.Adapter<FavoriteProductsAdapter.ViewHolder>() {
+class FavoriteProductsAdapter(
+    val context: Application,
+    val userId: String,
+    private val owner: ViewModelStoreOwner
+) : RecyclerView.Adapter<FavoriteProductsAdapter.ViewHolder>() {
 
     private var productList = emptyList<ProductEntity>()
-    var mProductViewModel = ViewModelProvider(context).get(ProductDbViewModel::class.java)
+    //var mProductViewModel = ViewModelProvider(context).get(LocalProductsViewModel::class.java)
 
-    inner class ViewHolder(binding: RowFavoriteItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    private val productFactory =
+        LocalProductFactory(context, userId)
+    val viewModel = ViewModelProvider(owner, productFactory).get(LocalProductsViewModel::class.java)
 
-        private var code : TextView = binding.productCode
+
+    inner class ViewHolder(binding: RowFavoriteItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        private var code: TextView = binding.productCode
         private var image: ImageView = binding.favImage
         private var name: TextView = binding.productName
         private var quantity: TextView = binding.productQuantity
         private var button: ImageButton = binding.deleteFavorite
-
 
 
         fun bindInfo(productEntity: ProductEntity) {
@@ -38,7 +50,7 @@ class FavoriteProductsAdapter (val context: ViewModelStoreOwner): RecyclerView.A
             name.text = productEntity.productName
             quantity.text = productEntity.productQuantity
 
-            button.setOnClickListener{
+            button.setOnClickListener {
                 deleteProduct(code.text.toString(), image.context)
             }
 
@@ -47,9 +59,14 @@ class FavoriteProductsAdapter (val context: ViewModelStoreOwner): RecyclerView.A
     }
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(RowFavoriteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            RowFavoriteItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     }
 
@@ -58,20 +75,18 @@ class FavoriteProductsAdapter (val context: ViewModelStoreOwner): RecyclerView.A
     }
 
     override fun getItemCount(): Int {
-       return productList.size
+        return productList.size
     }
 
-    fun setData(products: List<ProductEntity>){
+    fun setData(products: List<ProductEntity>) {
         this.productList = products
         notifyDataSetChanged()
     }
 
-    fun deleteProduct(id: String, context: Context){
-        mProductViewModel.deleteProduct(id)
+    fun deleteProduct(id: String, context: Context) {
+        viewModel.deleteProduct(id)
         Toast.makeText(context, R.string.singleDelteted, Toast.LENGTH_LONG).show()
     }
-
-
 
 
 }

@@ -2,6 +2,7 @@ package com.example.hunahpuv2.data.network
 
 import android.util.Log
 import com.example.hunahpuv2.core.RetrofitHelper
+import com.example.hunahpuv2.data.model.PriceModel
 import com.example.hunahpuv2.data.model.ProductModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -19,12 +20,23 @@ class ProductService {
         }
     }
 
-    suspend fun getProductById(productId: Long): ProductModel{
+    suspend fun getProductById(productId: String): ProductModel{
         return withContext(Dispatchers.IO){
             val response = retrofit.create(ApiClient::class.java).getProductsById(productId)
             if (response.isSuccessful){
                 Log.d("Mensaje", "All cool")
             }
+            response.body()!!
+        }
+    }
+
+    suspend fun getPrices(productCode: String, state: String): PriceModel{
+        return withContext(Dispatchers.IO){
+            val response = retrofit.create(ApiClient::class.java).getPrices(productCode, state)
+            if (response.isSuccessful){
+                Log.d("Mensaje", "All cool")
+            }
+
             response.body()!!
         }
     }

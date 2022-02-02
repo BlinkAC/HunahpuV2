@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.hunahpuv2.data.database.dao.ProductDao
 import com.example.hunahpuv2.data.database.entities.ProductEntity
 
-class ProductDbRepo(private val productDao: ProductDao) {
+class ProductDbRepo(private val productDao: ProductDao, userId: String) {
 
-    val readAllData: LiveData<List<ProductEntity>> = productDao.getAllProducts()
+    val readAllData: LiveData<List<ProductEntity>> = productDao.getAllProducts(userId)
 
     suspend fun addProduct(product: ProductEntity){
         productDao.addProduct(product)

@@ -1,5 +1,7 @@
 package com.example.hunahpuv2.iu.views
 
+import android.app.Application
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -10,30 +12,33 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.hunahpuv2.R
 import com.example.hunahpuv2.data.database.entities.ProductEntity
 import com.example.hunahpuv2.databinding.ActivityProductDetailsBinding
-import com.example.hunahpuv2.iu.viewModel.ProductDbViewModel
-import com.example.hunahpuv2.iu.viewModel.ProductDetailsViewModel
-import com.example.hunahpuv2.iu.viewModel.ProductDetailsViewModelFactory
+import com.example.hunahpuv2.iu.viewModel.*
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 class ProductDetails: AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailsBinding
-    private lateinit var mProductViewModel: ProductDbViewModel
-
+    private lateinit var mProductViewModel: LocalProductsViewModel
+    private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mProductViewModel = ViewModelProvider(this).get(ProductDbViewModel::class.java)
+        firebaseAuth = FirebaseAuth.getInstance()
+        checkUser()
+
+        val factory = LocalProductFactory(requireNotNull<Application>(this.application), firebaseAuth.currentUser!!.uid)
+        mProductViewModel = ViewModelProvider(this, factory).get(LocalProductsViewModel::class.java)
 
         val productImage: ImageView = binding.productImage
         val productName: TextView = binding.productName
 
         val bundle: Bundle? = intent.extras
-        val pId = bundle?.getString("productId")!!.toLong()
+        val pId = bundle?.getString("productId").toString()
 
-        val viewModelFactory = ProductDetailsViewModelFactory(pId)
+        val viewModelFactory = ProductDetailsViewModelFactory(pId, "NL")
         val viewModelDetails = ViewModelProvider(this, viewModelFactory).get(ProductDetailsViewModel::class.java)
 
         viewModelDetails.getProductById()
@@ -47,20 +52,28 @@ class ProductDetails: AppCompatActivity() {
             binding.imageProgress.isVisible = visibility
         }
 
+        viewModelDetails.getPrices()
+        viewModelDetails.productPrices.observe(this){
+            prices ->
+            binding.waltmartPrice.text = prices!!.priceWaltmart
+            binding.hebPrice.text = prices.priceHEB
+            binding.sorianaPrice.text = prices!!.priceSoriana
+
+        }
 
         binding.addProductToDB.setOnClickListener {
             viewModelDetails.uniqueProductModel.observe(this){
                 product ->
                 insertDataToDatabase(product!!.id.toString(), product.productImage.toString(),
-                product.productName.toString(), product.quantity.toString())
+                product.productName.toString(), product.quantity.toString(), firebaseAuth.currentUser!!.uid)
             }
         }
     }
 
-    private fun insertDataToDatabase(pId: String, pImg: String, pName: String, pQuantity: String) {
+    private fun insertDataToDatabase(pId: String, pImg: String, pName: String, pQuantity: String, userId: String) {
 
         if(insertCheck(pId, pImg, pName)){
-            val product = ProductEntity(pId, pName, pImg, pQuantity)
+            val product = ProductEntity(pId, pName, pImg, pQuantity,userId)
             mProductViewModel.addProduct(product)
             Toast.makeText(this, R.string.favSuccess, Toast.LENGTH_LONG).show()
         }
@@ -69,5 +82,13 @@ class ProductDetails: AppCompatActivity() {
 
     private fun insertCheck(pId: String, pImg: String, pName: String): Boolean{
         return !(pId.isEmpty() && pImg.isEmpty() && pName.isEmpty())
+    }
+
+    private fun checkUser() {
+        val firebaseUser = firebaseAuth.currentUser
+        if(firebaseUser == null){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 }

@@ -3,7 +3,7 @@ package com.example.hunahpuv2.data.model
 import com.google.gson.annotations.SerializedName
 
 data class ProductModel(
-    @SerializedName("id"           ) var id           : Long?    = null,
+    @SerializedName("id"           ) var id           : String?    = null,
     @SerializedName("productName"  ) var productName  : String? = null,
     @SerializedName("quantity"     ) var quantity     : String? = null,
     @SerializedName("productImage" ) var productImage : String? = null
