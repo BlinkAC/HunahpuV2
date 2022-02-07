@@ -1,20 +1,36 @@
 package com.example.hunahpuv2.iu.views
 
+
 import android.app.Application
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AlertDialogLayout
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.example.hunahpuv2.R
+import com.example.hunahpuv2.core.RetrofitHelper
 import com.example.hunahpuv2.data.database.entities.ProductEntity
+import com.example.hunahpuv2.data.model.ProductRequest
+import com.example.hunahpuv2.data.network.ApiClient
 import com.example.hunahpuv2.databinding.ActivityProductDetailsBinding
 import com.example.hunahpuv2.iu.viewModel.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProductDetails: AppCompatActivity() {
 
@@ -43,8 +59,25 @@ class ProductDetails: AppCompatActivity() {
 
         viewModelDetails.getProductById()
         viewModelDetails.uniqueProductModel.observe(this){ product ->
-            Picasso.get().load(product!!.productImage).into(productImage)
-            productName.text = product.productName
+            if(product != null){
+                Picasso.get().load(product.productImage).into(productImage)
+                productName.text = product.productName
+
+                viewModelDetails.getPrices()
+                viewModelDetails.productPrices.observe(this){
+                        prices ->
+                    binding.waltmartPrice.text = prices!!.priceWaltmart
+                    binding.hebPrice.text = prices.priceHEB
+                    binding.sorianaPrice.text = prices.priceSoriana
+                    binding.latestUpdate.text = "Ultima actualización: ${prices.latestUpdate!!.subSequence(0,10)}"
+                }
+            }else{
+                 val format = SimpleDateFormat("yyyy-MM-dd")
+                val date = format.format(Date())
+                showMyDialog(pId, date)
+
+            }
+
         }
 
         viewModelDetails.isLoading.observe(this){
@@ -52,14 +85,7 @@ class ProductDetails: AppCompatActivity() {
             binding.imageProgress.isVisible = visibility
         }
 
-        viewModelDetails.getPrices()
-        viewModelDetails.productPrices.observe(this){
-            prices ->
-            binding.waltmartPrice.text = prices!!.priceWaltmart
-            binding.hebPrice.text = prices.priceHEB
-            binding.sorianaPrice.text = prices!!.priceSoriana
 
-        }
 
         binding.addProductToDB.setOnClickListener {
             viewModelDetails.uniqueProductModel.observe(this){
@@ -90,5 +116,50 @@ class ProductDetails: AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+    }
+
+    private fun showMyDialog(productId: String, date: String){
+       val builder = MaterialAlertDialogBuilder(this)
+
+
+
+        builder.setTitle(R.string.alertNoFound)
+        builder.setMessage(R.string.notFoundMsg)
+        builder.setNegativeButton(R.string.notNow) { dialog, which ->
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        builder.setPositiveButton("Si") { dialog, which ->
+            requestNewProduct(productId, date)
+            Toast.makeText(this, R.string.requestConfirm, Toast.LENGTH_LONG)
+                .show()
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        builder.show()
+    }
+
+
+    private fun requestNewProduct(productId: String, date: String){
+        //I know this probably should not be here-
+        val retrofit = RetrofitHelper.getRetrofit().create(ApiClient::class.java)
+        val requestedProduct = ProductRequest(id =0, productId = productId, requestedAt = date)
+
+        retrofit.requestNewProduct(requestedProduct).enqueue(object : Callback<ProductRequest> {
+            override fun onResponse(
+                call: Call<ProductRequest>,
+                response: Response<ProductRequest>
+            ) {
+                Log.d("Mensaje", "Se metio bien")
+            }
+
+            override fun onFailure(call: Call<ProductRequest>, t: Throwable) {
+                Log.d("Mensaje", t.toString())
+            }
+
+        })
     }
 }

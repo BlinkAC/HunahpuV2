@@ -9,11 +9,14 @@
         <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/drawable/ic_lupa_foreground.xml" value="0.1" />
         <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/drawable/rounded_corner.xml" value="0.1" />
         <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/drawable/rounded_orner.xml" value="0.1" />
-        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/activity_home.xml" value="0.75" />
+        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/activity_product_details.xml" value="0.2111111111111111" />
-        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/fragment_favorite_prods.xml" value="0.1" />
+        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/activity_product_details.xml" value="0.2" />
+        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/activity_search_page.xml" value="0.19" />
+        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/activity_search_result.xml" value="0.15307971014492755" />
+        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/fragment_favorite_prods.xml" value="0.18" />
         <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/nav_header.xml" value="0.17074275362318841" />
+        <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/network_state.xml" value="0.1" />
         <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/parent_item.xml" value="0.33" />
         <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/product_item.xml" value="0.5190311418685121" />
         <entry key="..\:/Users/Edgar Antonio/AndroidStudioProjects/HunahpuV2/app/src/main/res/layout/row_favorite_item.xml" value="0.33" />

@@ -84,6 +84,11 @@ class HomeActivity : AppCompatActivity() {
         binding.scannerButton.setOnClickListener {
             initScanner()
         }
+
+        binding.myToolbar.searchPageButton.setOnClickListener {
+            val intent = Intent(this, SearchPage::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initScanner() {

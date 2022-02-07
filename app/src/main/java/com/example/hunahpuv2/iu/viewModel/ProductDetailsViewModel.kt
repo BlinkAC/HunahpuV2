@@ -10,7 +10,7 @@ import com.example.hunahpuv2.domain.GetProductUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ProductDetailsViewModel(val productId: String, val state: String): ViewModel() {
+class ProductDetailsViewModel(val productId: String, private val state: String): ViewModel() {
 
     val uniqueProductModel = MutableLiveData<ProductModel?>()
     val productPrices = MutableLiveData<PriceModel?>()

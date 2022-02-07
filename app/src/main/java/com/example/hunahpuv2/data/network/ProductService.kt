@@ -20,13 +20,30 @@ class ProductService {
         }
     }
 
-    suspend fun getProductById(productId: String): ProductModel{
+    suspend fun searchProducts(query: String?, page: Int?): List<ProductModel>{
         return withContext(Dispatchers.IO){
-            val response = retrofit.create(ApiClient::class.java).getProductsById(productId)
-            if (response.isSuccessful){
+            val response = retrofit.create(ApiClient::class.java).searchProducts(query, page)
+            if(response.isSuccessful){
                 Log.d("Mensaje", "All cool")
             }
+
             response.body()!!
+        }
+    }
+
+    suspend fun getProductById(productId: String): ProductModel?{
+        return withContext(Dispatchers.IO){
+            val response = retrofit.create(ApiClient::class.java).getProductsById(productId)
+            if (response.body() != null){
+                Log.d("Mensaje", "All cool")
+                Log.d("Mensaje", response.body().toString())
+                response.body()!!
+            }else{
+                Log.d("Mensaje", "Malardo")
+                Log.d("Mensaje", response.body().toString())
+                null
+            }
+
         }
     }
 
