@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.hunahpuv2.core.RetrofitHelper
 
+@Suppress("UNCHECKED_CAST")
 class SearchViewModelFactory(
     private val retrofit: RetrofitHelper,
     private var query: String?,

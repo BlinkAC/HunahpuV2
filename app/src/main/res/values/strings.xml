@@ -22,6 +22,9 @@
     <string name="requestConfirm">Agregaremos tu producto a la brevedad posible</string>
     <string name="notNow">Ahora no</string>
     <string name="notFoundMsg">Parece que no hemos encontrado el producto buscado\n¿Te gustaría que lo agregaramos?</string>
+    <string name="photoPrueba">https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&amp;maxheight=100&amp;photo_reference=</string>
+    <string name="googleKey">&amp;key=AIzaSyBnWAn7Xih1ziiWBx6Ofc6sxc3w_QQWG40</string>
+    <string name="nearMarkets">Supermercados cerca de tu ubicación</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

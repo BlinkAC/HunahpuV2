@@ -49,43 +49,128 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:layout_marginBottom="30dp">
-            <Button
+            <FrameLayout
                 android:layout_weight="1"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:id="@+id/buttonPanes"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
-                android:backgroundTint="@color/white"
-                android:text="@string/panes"
-                android:textColor="@color/greyText"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:gravity="bottom|center"
-                android:drawableTop="@mipmap/ic_lupa"
-                android:paddingBottom="6dp">
-            </Button>
+                android:layout_height="150dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+                <ImageButton
+                    android:id="@+id/buttonPanes"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/ic_pan"
+                    android:layout_gravity="bottom"
+                    android:scaleType="fitXY"
+                    android:backgroundTint="@color/white"
+                    >
+                </ImageButton>
+                <TextView
+                    android:layout_gravity="center|bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/panes"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="10dp">
 
-            <Button
+                </TextView>
+            </FrameLayout>
+            <FrameLayout
                 android:layout_weight="1"
-                android:id="@+id/buttonBebidas"
                 android:layout_width="0dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_height="130dp"
-                android:backgroundTint="@color/white"
-                android:text="@string/bebdasDep"
-                android:textColor="@color/greyText"
-                android:textSize="14sp"
-                android:textAllCaps="false"
-                android:gravity="bottom|center"
-                android:drawableTop="@mipmap/ic_lupa"
-                >
-            </Button>
+                android:layout_height="150dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+                <ImageButton
+                    android:id="@+id/buttonBebidas"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/ic_deportivas"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/white"
+                    >
+                </ImageButton>
+                <TextView
+                    android:layout_gravity="center|bottom"
+                    android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bebdasDep"
+                    android:textSize="18sp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp">
+
+                </TextView>
+            </FrameLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+                <ImageButton
+                    android:id="@+id/buttonBotanas"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/ic_botanas"
+                    android:layout_gravity="bottom"
+                    android:scaleType="fitXY"
+                    android:backgroundTint="@color/white"
+                    >
+                </ImageButton>
+                <TextView
+                    android:layout_gravity="center|bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/botanas"
+                    android:background="@color/white"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="10dp">
+
+                </TextView>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp">
+                <ImageButton
+                    android:id="@+id/buttonLimpieza"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/ic_limpieza"
+                    android:scaleType="fitXY"
+                    android:backgroundTint="@color/white"
+                    >
+                </ImageButton>
+                <TextView
+                    android:layout_gravity="center|bottom"
+                    android:layout_width="match_parent"
+                    android:textAlignment="center"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:text="@string/limpieza"
+                    android:textSize="18sp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp">
+
+                </TextView>
+            </FrameLayout>
+
+        </LinearLayout>
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -124,6 +209,6 @@
                 >
             </Button>
 
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

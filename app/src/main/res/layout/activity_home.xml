@@ -13,25 +13,54 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <include
                 android:id="@+id/myToolbar"
                 layout="@layout/toolbar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             </include>
+
+            <TextView
+                android:id="@+id/nearPlaces"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nearMarkets"
+                android:textSize="24sp"
+                android:textColor="@color/greyText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myToolbar"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp">
+
+            </TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/placesRV"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nearPlaces"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias=".06">
+            </androidx.recyclerview.widget.RecyclerView>
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/parentRecyclerView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/myToolbar"
-                app:layout_constraintVertical_bias=".08">
+                app:layout_constraintTop_toBottomOf="@id/placesRV"
+                app:layout_constraintEnd_toEndOf="@id/placesRV"
+                android:layout_marginTop="40dp"
+                >
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -48,15 +77,14 @@
                 android:id="@+id/scannerButton"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="#5899E2"
+                android:src="@drawable/ic_barcode"
                 app:fabCustomSize="65dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="24dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="#5899E2"
-                android:src="@drawable/ic_barcode"
-                app:tint="@color/white"
-                >
+                app:tint="@color/white">
 
             </com.google.android.material.floatingactionbutton.FloatingActionButton>
         </androidx.constraintlayout.widget.ConstraintLayout>

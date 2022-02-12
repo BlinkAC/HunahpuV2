@@ -1,8 +1,6 @@
 package com.example.hunahpuv2.data.network
 
-import com.example.hunahpuv2.data.model.PriceModel
-import com.example.hunahpuv2.data.model.ProductModel
-import com.example.hunahpuv2.data.model.ProductRequest
+import com.example.hunahpuv2.data.model.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -35,19 +33,13 @@ interface ApiClient {
 
     @POST("RequestedProducts")
     fun requestNewProduct(@Body requestedProduct: ProductRequest): Call<ProductRequest>
+
+    @GET("nearbysearch/json?")
+    suspend fun getNearbyMarkets(
+        @Query("location",encoded = true) location: String,
+        @Query("radius") radius: Int,
+        @Query("type") type: String,
+        @Query("key") key: String
+    ): Response<LocationsModel>
 }
 
-//https://hunahpu.azurewebsites.net/api/Products/GetProductsByName?query=agua
-
-/*https://hunahpu.azurewebsites.net/api/Products?sortByName=asc&pageNumber=1
-https://hunahpu.azurewebsites.net/api/Products/bydept?pagenumber=1&departmentid=13
-
-Requested prodicust
-https://hunahpu.azurewebsites.net/api/RequestedProducts
-{
-    "id": 0,
-    "productId": "1234567810",
-    "requestedAt": "2022-02-02T17:10:57.722Z"
-}*/
-
-//https://hunahpu.azurewebsites.net/api/Prices/Get?productCode=75007614&state=CDMX

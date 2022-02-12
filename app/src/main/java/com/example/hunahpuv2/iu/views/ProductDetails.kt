@@ -50,7 +50,7 @@ class ProductDetails: AppCompatActivity() {
 
         val productImage: ImageView = binding.productImage
         val productName: TextView = binding.productName
-
+        val productQuantity: TextView = binding.productQuantity
         val bundle: Bundle? = intent.extras
         val pId = bundle?.getString("productId").toString()
 
@@ -62,7 +62,7 @@ class ProductDetails: AppCompatActivity() {
             if(product != null){
                 Picasso.get().load(product.productImage).into(productImage)
                 productName.text = product.productName
-
+                productQuantity.text = product.quantity
                 viewModelDetails.getPrices()
                 viewModelDetails.productPrices.observe(this){
                         prices ->
@@ -125,12 +125,12 @@ class ProductDetails: AppCompatActivity() {
 
         builder.setTitle(R.string.alertNoFound)
         builder.setMessage(R.string.notFoundMsg)
-        builder.setNegativeButton(R.string.notNow) { dialog, which ->
+        builder.setNegativeButton(R.string.notNow) { _, _ ->
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }
-        builder.setPositiveButton("Si") { dialog, which ->
+        builder.setPositiveButton("Si") { _, _ ->
             requestNewProduct(productId, date)
             Toast.makeText(this, R.string.requestConfirm, Toast.LENGTH_LONG)
                 .show()
