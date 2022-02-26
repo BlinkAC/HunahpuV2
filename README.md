@@ -27,20 +27,27 @@ implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 
 // Fragment
 implementation "androidx.fragment:fragment-ktx:1.3.2"
+
 // Activity
 implementation "androidx.activity:activity-ktx:1.2.2"
+
 // ViewModel
 implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+
 // LiveData
 implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+
 // Retrofit
 implementation "com.squareup.retrofit2:retrofit:2.9.0"
 implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
+
 //Corrutinas
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6'
+
 //RecyclerView
 implementation 'androidx.recyclerview:recyclerview:1.2.0'
+
 //Picasso
 implementation "com.squareup.picasso:picasso:2.71828"
 implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -50,6 +57,7 @@ implementation("androidx.room:room-runtime:2.4.0")
 implementation 'androidx.room:room-ktx:2.4.0'
 annotationProcessor("androidx.room:room-compiler:2.4.0")
 kapt("androidx.room:room-compiler:2.4.0")
+
 //BarcodeScanner
 implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
 implementation 'com.google.zxing:core:3.3.0'
